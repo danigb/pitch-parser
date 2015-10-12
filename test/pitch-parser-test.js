@@ -33,20 +33,5 @@ vows.describe('pitch').addBatch({
       assert.equal(pitch.str([0, -3, null]), 'Cbbb')
       assert.equal(pitch.str([4, 1, null]), 'G#')
     }
-  },
-  'pitch.map': {
-    'no fn': function () {
-      var p = pitch.map()
-      assert.equal(p('c3'), 'C3')
-      assert.equal(p('bbbbb'), 'Bbbbb')
-      assert.equal(p('fx'), 'F##')
-    },
-    'with fn': function () {
-      var p = pitch.map(function (p) {
-        return [p[0] + 1, 0, null]
-      })
-      assert.equal(p('C#4'), 'D')
-      assert.equal(p('B'), 'C')
-    }
   }
 }).export(module)
