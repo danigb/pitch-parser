@@ -1,0 +1,27 @@
+{
+  "name": "pitch-parser",
+  "version": "0.1.0",
+  "description": "Music pitch parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "vows --spec test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danigb/pitch-parser.git"
+  },
+  "keywords": [
+    "pitch",
+    "music",
+    "theory"
+  ],
+  "author": "danigb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danigb/pitch-parser/issues"
+  },
+  "homepage": "https://github.com/danigb/pitch-parser#readme",
+  "devDependencies": {
+    "vows": "^0.8.1"
+  }
+}

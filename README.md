@@ -1,2 +1,3 @@
 # pitch-parser
-Music pitch parser for javascript
+
+Music pitch parser for javascript. 
