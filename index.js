@@ -15,10 +15,10 @@ var REGEX = /^([a-gA-G])(#{1,4}|b{1,4}|x{1,2}|)(\d*)$/
  * @return {Array} the pitch array
  *
  * @example
- * pitch.patse('C2') // => [0, 0, 2]
- * pitch.patse('C3') // => [0, 0, 3]
- * pitch.patse('C#3') // => [0, 1, 3]
- * pitch.patse('Cb3') // => [0, -1, 3]
+ * pitch.parse('C2') // => [0, 0, 2]
+ * pitch.parse('C3') // => [0, 0, 3]
+ * pitch.parse('C#3') // => [0, 1, 3]
+ * pitch.parse('Cb3') // => [0, -1, 3]
  * pitch.parse('D##4') // => [1, 2, 4]
  * pitch.parse('F#') // => [4, 1, null]
  */
@@ -42,6 +42,7 @@ function parse (str) {
  * @example
  * pitch.str([2, -1, 3]) // => 'Eb3'
  * pitch.str([5, 2, 2]) // => 'A##2'
+ * pitch.str([6, -2, null]) // => 'Bbb'
  */
 function str (arr) {
   var letter = LETTERS.charAt(Math.abs(arr[0]) % 7)

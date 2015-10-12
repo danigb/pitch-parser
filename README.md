@@ -1,5 +1,9 @@
 # pitch-parser
 
+[![Build Status](https://travis-ci.org/danigb/pitch-parser.svg?branch=master)](https://travis-ci.org/danigb/pitch-parser)
+[![Code Climate](https://codeclimate.com/github/danigb/pitch-parser/badges/gpa.svg)](https://codeclimate.com/github/danigb/pitch-parser)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+
 Music pitch parser for javascript.
 
 Given a pitch string it returns a pitch array with its properties:
@@ -10,7 +14,7 @@ pitch.parse('C#4') // => [0, 2, 4]
 pitch.parse('Ebb3') // => [2, -2, 2]
 ```
 
-The pitch array is an array of 3 integers with the following form `[letter, accidentals, octave]` where:
+The returned value is an array of 3 integers with the following form `[letter, accidentals, octave]` where:
 
 - __letter__: an interger between 0 and 6 to represent C, D... to B
 - __accidentals__: is an integer to represent pitch accidentals. 0 means no accidentals, negatives values are for flats and positives for sharps
