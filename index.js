@@ -40,15 +40,15 @@ function parse (str) {
  * @return {String} the pitch string in scientific notation
  *
  * @example
- * pitch.str([2, -1, 3]) // => 'Eb3'
- * pitch.str([5, 2, 2]) // => 'A##2'
- * pitch.str([6, -2, null]) // => 'Bbb'
+ * pitch.stringify([2, -1, 3]) // => 'Eb3'
+ * pitch.stringify([5, 2, 2]) // => 'A##2'
+ * pitch.stringify([6, -2, null]) // => 'Bbb'
  */
-function str (arr) {
+function stringify (arr) {
   var letter = LETTERS.charAt(Math.abs(arr[0]) % 7)
   var acc = fillStr(Math.abs(arr[1]), arr[1] < 0 ? 'b' : '#')
   var oct = arr[2] || arr[2] === 0 ? arr[2] : ''
   return letter + acc + oct
 }
 
-module.exports = { parse: parse, str: str }
+module.exports = { parse: parse, stringify: stringify }

@@ -1,0 +1,5 @@
+CHANGELOG
+
+[Master]
+- Rename pitch.str to pitch.stringify
+- Initial implementation (extracted from tonal)
