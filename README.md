@@ -6,7 +6,7 @@
 
 Music pitch parser for javascript.
 
-Given a pitch string it returns a pitch array with its properties:
+Given a pitch string it returns a [pitch array](https://github.com/danigb/a-pitch):
 
 ```js
 var pitch = require('pitch-parser')
@@ -16,7 +16,7 @@ pitch.parse('Ebb3') // => [2, -2, 2]
 
 The returned value is an array of 3 integers with the following form `[letter, accidentals, octave]` where:
 
-- __letter__: an interger between 0 and 6 to represent C, D... to B
+- __letter__: a positive integer between 0 and 6 to represent C, D... to B
 - __accidentals__: is an integer to represent pitch accidentals. 0 means no accidentals, negatives values are for flats and positives for sharps
 - __octave__: (Optional) the octave number or null if not specified
 
@@ -151,3 +151,7 @@ pitch.str([5, 2, 2]) // => 'A##2'</code></pre>
 *generated with [docme](https://github.com/thlorenz/docme)*
 </div>
 <!-- END docme generated API please keep comment here to allow auto update -->
+
+## License
+
+MIT License
