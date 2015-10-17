@@ -3,15 +3,20 @@
 [![Build Status](https://travis-ci.org/danigb/pitch-parser.svg?branch=master)](https://travis-ci.org/danigb/pitch-parser)
 [![Code Climate](https://codeclimate.com/github/danigb/pitch-parser/badges/gpa.svg)](https://codeclimate.com/github/danigb/pitch-parser)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+[![npm version](https://badge.fury.io/js/pitch-parser.svg)](https://badge.fury.io/js/pitch-parser)
 
 Music pitch parser for javascript.
 
-Given a pitch string it returns a [pitch array](https://github.com/danigb/a-pitch):
+Given a pitch string it returns a [pitch array](https://github.com/danigb/a-pitch), and given a pitch array it returns a pitch string:
 
 ```js
 var pitch = require('pitch-parser')
-pitch.parse('C#4') // => [0, 2, 4]
-pitch.parse('Ebb3') // => [2, -2, 2]
+pitch('C#4') // => [0, 2, 4]
+pitch([0, 2, 4]) // => 'C#4'
+pitch('Ebb3') // => [2, -2, 3]
+pitch([2, -2, 3]) // => 'Ebb3'
+pitch('A#') // => [5, 1, null]
+pitch([5, 1, null]) // => 'A#'
 ```
 
 The returned value is an array of 3 integers with the following form `[letter, accidentals, octave]` where:
@@ -35,12 +40,13 @@ The returned value is an array of 3 integers with the following form `[letter, a
 </div>
 <dl>
 <dt>
-<h4 class="name" id="parse"><span class="type-signature"></span>parse<span class="signature">(str)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+<h4 class="name" id="pitch"><span class="type-signature"></span>pitch<span class="signature">(value)</span><span class="type-signature"> &rarr; {Array|String}</span></h4>
 </dt>
 <dd>
 <div class="description">
-<p>Get a pitch array from a pitch string in scientific notation</p>
-<p>The pitch array of 3 integers is in the form <code>[letter, accidentals, octave]</code></p>
+<p>Converts pitches between strings and array notation.</p>
+<p>This function caches the result to get better performance. If for some
+reason you don't want to cache, use <code>pitch.parse</code> and <code>pitch.build</code></p>
 </div>
 <h5>Parameters:</h5>
 <table class="params">
@@ -53,11 +59,13 @@ The returned value is an array of 3 integers with the following form `[letter, a
 </thead>
 <tbody>
 <tr>
-<td class="name"><code>str</code></td>
+<td class="name"><code>value</code></td>
 <td class="type">
 <span class="param-type">String</span>
+|
+<span class="param-type">Array</span>
 </td>
-<td class="description last"><p>the pitch string</p></td>
+<td class="description last"><p>the pitch (can be a string or array)</p></td>
 </tr>
 </tbody>
 </table>
@@ -65,15 +73,16 @@ The returned value is an array of 3 integers with the following form `[letter, a
 <dt class="tag-source">Source:</dt>
 <dd class="tag-source"><ul class="dummy">
 <li>
-<a href="https://github.com/danigb/pitch-parser/blob/master/index.js">index.js</a>
+<a href="https://github.com/danigb/pitch-parser/blob/0.2.0/index.js">index.js</a>
 <span>, </span>
-<a href="https://github.com/danigb/pitch-parser/blob/master/index.js#L25">lineno 25</a>
+<a href="https://github.com/danigb/pitch-parser/blob/0.2.0/index.js#L37">lineno 37</a>
 </li>
 </ul></dd>
 </dl>
 <h5>Returns:</h5>
 <div class="param-desc">
-<p>the pitch array</p>
+<p>the converted value (string if it was an array,
+and array if it was string)</p>
 </div>
 <dl>
 <dt>
@@ -81,67 +90,24 @@ Type
 </dt>
 <dd>
 <span class="param-type">Array</span>
-</dd>
-</dl>
-<h5>Example</h5>
-<pre class="prettyprint"><code>pitch.patse('C2') // => [0, 0, 2]
-pitch.patse('C3') // => [0, 0, 3]
-pitch.patse('C#3') // => [0, 1, 3]
-pitch.patse('Cb3') // => [0, -1, 3]
-pitch.parse('D##4') // => [1, 2, 4]
-pitch.parse('F#') // => [4, 1, null]</code></pre>
-</dd>
-<dt>
-<h4 class="name" id="str"><span class="type-signature"></span>str<span class="signature">(arr)</span><span class="type-signature"> &rarr; {String}</span></h4>
-</dt>
-<dd>
-<div class="description">
-<p>Get a pitch string from a pitch array</p>
-</div>
-<h5>Parameters:</h5>
-<table class="params">
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th class="last">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="name"><code>arr</code></td>
-<td class="type">
-<span class="param-type">Array</span>
-</td>
-<td class="description last"><p>the pitch array</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="details">
-<dt class="tag-source">Source:</dt>
-<dd class="tag-source"><ul class="dummy">
-<li>
-<a href="https://github.com/danigb/pitch-parser/blob/master/index.js">index.js</a>
-<span>, </span>
-<a href="https://github.com/danigb/pitch-parser/blob/master/index.js#L46">lineno 46</a>
-</li>
-</ul></dd>
-</dl>
-<h5>Returns:</h5>
-<div class="param-desc">
-<p>the pitch string in scientific notation</p>
-</div>
-<dl>
-<dt>
-Type
-</dt>
-<dd>
+|
 <span class="param-type">String</span>
 </dd>
 </dl>
-<h5>Example</h5>
-<pre class="prettyprint"><code>pitch.str([2, -1, 3]) // => 'Eb3'
-pitch.str([5, 2, 2]) // => 'A##2'</code></pre>
+<h5>Examples</h5>
+<pre class="prettyprint"><code>pitch('C4') // => [0, 0, 4]
+pitch([0, 0, 4]) // => 'C4'</code></pre>
+<pre class="prettyprint"><code> // parse
+pitch('C2') // => [0, 0, 2]
+pitch('C3') // => [0, 0, 3]
+pitch('C#3') // => [0, 1, 3]
+pitch('Cb3') // => [0, -1, 3]
+pitch('D##4') // => [1, 2, 4]
+pitch('F#') // => [4, 1, null] (no octave)</code></pre>
+<pre class="prettyprint"><code> // build
+pitch([2, -1, 3]) // => 'Eb3'
+pitch([5, 2, 2]) // => 'A##2'
+pitch([6, -2, null]) // => 'Bbb'</code></pre>
 </dd>
 </dl>
 </article>

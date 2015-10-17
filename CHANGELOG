@@ -1,5 +1,11 @@
 CHANGELOG
 
 [Master]
+
+[0.2.0 not released]
+- Add pitch facade with cache support
+- Rename pitch.stringify to pitch.build (again!)
+
+[0.1.0]
 - Rename pitch.str to pitch.stringify
 - Initial implementation (extracted from tonal)
