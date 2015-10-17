@@ -40,65 +40,33 @@ The returned value is an array of 3 integers with the following form `[letter, a
 </div>
 <dl>
 <dt>
-<h4 class="name" id="pitch"><span class="type-signature"></span>pitch<span class="signature">(value)</span><span class="type-signature"> &rarr; {Array|String}</span></h4>
+<h4 class="name" id="pitch"><span class="type-signature"></span>pitch<span class="type-signature"></span></h4>
 </dt>
 <dd>
 <div class="description">
-<p>Converts pitches between strings and array notation.</p>
+<p>Converts pitches between strings and <a href="https://github.com/danigb/a-pitch">array notation</a></p>
+<p>This functions parses a string in the form <code>'letter + accidentals [+ octave]'</code>.
+The letter can be upper or down case and the accidentals can be sharps <code>#</code>
+flats <code>b</code> or double sharps <code>x</code>.</p>
+<p>The pitch array notation is 3 integers is in the form <code>[letter, accidentals, octave]</code>.</p>
 <p>This function caches the result to get better performance. If for some
 reason you don't want to cache, use <code>pitch.parse</code> and <code>pitch.build</code></p>
 </div>
-<h5>Parameters:</h5>
-<table class="params">
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th class="last">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="name"><code>value</code></td>
-<td class="type">
-<span class="param-type">String</span>
-|
-<span class="param-type">Array</span>
-</td>
-<td class="description last"><p>the pitch (can be a string or array)</p></td>
-</tr>
-</tbody>
-</table>
 <dl class="details">
 <dt class="tag-source">Source:</dt>
 <dd class="tag-source"><ul class="dummy">
 <li>
-<a href="https://github.com/danigb/pitch-parser/blob/0.2.0/index.js">index.js</a>
+<a href="https://github.com/danigb/pitch-parser/blob/master/index.js">index.js</a>
 <span>, </span>
-<a href="https://github.com/danigb/pitch-parser/blob/0.2.0/index.js#L37">lineno 37</a>
+<a href="https://github.com/danigb/pitch-parser/blob/master/index.js#L11">lineno 11</a>
 </li>
 </ul></dd>
-</dl>
-<h5>Returns:</h5>
-<div class="param-desc">
-<p>the converted value (string if it was an array,
-and array if it was string)</p>
-</div>
-<dl>
-<dt>
-Type
-</dt>
-<dd>
-<span class="param-type">Array</span>
-|
-<span class="param-type">String</span>
-</dd>
 </dl>
 <h5>Examples</h5>
 <pre class="prettyprint"><code>pitch('C4') // => [0, 0, 4]
 pitch([0, 0, 4]) // => 'C4'</code></pre>
 <pre class="prettyprint"><code> // parse
-pitch('C2') // => [0, 0, 2]
+pitch('c2') // => [0, 0, 2]
 pitch('C3') // => [0, 0, 3]
 pitch('C#3') // => [0, 1, 3]
 pitch('Cb3') // => [0, -1, 3]
@@ -108,6 +76,9 @@ pitch('F#') // => [4, 1, null] (no octave)</code></pre>
 pitch([2, -1, 3]) // => 'Eb3'
 pitch([5, 2, 2]) // => 'A##2'
 pitch([6, -2, null]) // => 'Bbb'</code></pre>
+<pre class="prettyprint"><code> // return scientific notation
+pitch(pitch('cbb')) // => 'Cbb'
+pitch(pitch('fx')) // => 'F##'</code></pre>
 </dd>
 </dl>
 </article>

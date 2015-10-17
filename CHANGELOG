@@ -3,6 +3,7 @@ CHANGELOG
 [Master]
 
 [0.2.0 not released]
+- Use a-pitch notation function
 - Add pitch facade with cache support
 - Rename pitch.stringify to pitch.build (again!)
 

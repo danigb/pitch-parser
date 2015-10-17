@@ -24,5 +24,8 @@
   "homepage": "https://github.com/danigb/pitch-parser#readme",
   "devDependencies": {
     "vows": "^0.8.1"
+  },
+  "dependencies": {
+    "a-pitch": "^0.1.0"
   }
 }

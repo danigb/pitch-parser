@@ -1,12 +1,13 @@
 'use strict'
 
+var notation = require('a-pitch/notation')
+
 // utility: fill a string with a char
 function fillStr (num, char) { return Array(num + 1).join(char) }
 
 var LETTERS = 'CDEFGAB'
 var REGEX = /^([a-gA-G])(#{1,4}|b{1,4}|x{1,2}|)(\d*)$/
 
-var cache = {}
 /**
  * Converts pitches between strings and [array notation](https://github.com/danigb/a-pitch)
  *
@@ -19,6 +20,7 @@ var cache = {}
  * This function caches the result to get better performance. If for some
  * reason you don't want to cache, use `pitch.parse` and `pitch.build`
  *
+ * @name pitch
  * @param {String|Array} value - the pitch (can be a string or array)
  * @return {Array|String} the converted value (string if it was an array,
  * and array if it was string)
@@ -44,16 +46,7 @@ var cache = {}
  * pitch(pitch('cbb')) // => 'Cbb'
  * pitch(pitch('fx')) // => 'F##'
  */
-function pitch (value) {
-  if (typeof value === 'string') {
-    return cache[value] ? cache[value] : cache[value] = parse(value)
-  } else if (Array.isArray(value)) {
-    var str = '|' + value[0] + '|' + value[1] + '|' + value[2]
-    return cache[str] ? cache[str] : cache[str] = build(value)
-  } else {
-    return null
-  }
-}
+module.exports = notation(parse, build)
 
 /*
  * Get a pitch array from a pitch string in scientific notation
@@ -100,8 +93,3 @@ function build (arr) {
   var oct = arr[2] || arr[2] === 0 ? arr[2] : ''
   return letter + acc + oct
 }
-
-pitch.parse = parse
-pitch.build = build
-
-module.exports = pitch
