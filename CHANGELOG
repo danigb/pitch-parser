@@ -2,6 +2,9 @@ CHANGELOG
 
 [Master]
 
+[0.3.0]
+- Remove a-pitch dependency but keep memoization
+
 [0.2.0]
 - Use a-pitch notation function
 - Add pitch facade with cache support
